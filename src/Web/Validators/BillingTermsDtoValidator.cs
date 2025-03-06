@@ -17,7 +17,7 @@ public class BillingTermsDtoValidator : AbstractValidator<BillingTermsDto?>
         {
             RuleFor(dto => dto!.InstallmentPlan!.NumberOfInstallments)
                 .LessThan(dto => dto!.Duration!.NumberOfMonths)
-                .WithMessage("{PropertyName} must be less than the duration in months.");
+                .WithMessage("{PropertyName} must be less than the duration in months."); // https://docs.fluentvalidation.net/en/latest/configuring.html#placeholders
 
             RuleFor(dto => dto)
                 .Must(dto => dto!.InstallmentPlan!.InstallmentFrequency * (dto.InstallmentPlan.NumberOfInstallments - 1) <= dto.Duration!.NumberOfMonths)
