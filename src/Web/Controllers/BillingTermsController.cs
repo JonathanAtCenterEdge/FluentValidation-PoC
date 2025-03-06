@@ -5,7 +5,7 @@ using Web.Models;
 
 namespace Web.Controllers;
 
-public class BillingTermsController(IValidator<BillingTermsDto> billingTermsValidator): Controller
+public class BillingTermsController(IValidator<BillingTermsDto?> billingTermsValidator): Controller
 {
     [HttpPost("/billingTerms")]
     public IActionResult CreateBillingTerms(
