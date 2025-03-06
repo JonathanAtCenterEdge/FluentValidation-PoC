@@ -3,6 +3,12 @@ using Web.Models;
 
 namespace Web.Validators;
 
+// Can be async https://docs.fluentvalidation.net/en/latest/async.html?highlight=async
+// Strongly typed
+// Can be very easily unit tested with native fluent-like assertions
+// Lives separate from the model
+// Is fluently readable
+// Errors and Keys are automatic, but can be manually overridden fluently
 public class BillingTermsDtoValidator : AbstractValidator<BillingTermsDto?>
 {
     public BillingTermsDtoValidator()
