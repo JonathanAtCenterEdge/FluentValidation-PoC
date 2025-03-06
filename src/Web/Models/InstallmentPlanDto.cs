@@ -6,11 +6,10 @@ public class InstallmentPlanDto
 {
     [Required]
     [Range(2, 99)]
-    public int NumberOfInstallments { get; set; }
+    public int NumberOfInstallments { get; set; } = 2;
 
     [Required]
     [Range(1, 12)]
-    public int InstallmentFrequency { get; set; }
 
     /// <summary>
     /// Ensures the plan can fit inside a <see cref="DurationDto"/>.
@@ -27,4 +26,5 @@ public class InstallmentPlanDto
             yield return (nameof(InstallmentPlanDto), "Plan will not fit within the entire membership duration.");
         }
     }
+    public int InstallmentFrequency { get; set; } = 1;
 }
