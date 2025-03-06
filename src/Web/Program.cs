@@ -1,10 +1,15 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using System.Reflection;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-// builder.Services.AddScoped<IValidator<BillingTermsDto>, BillingTermsDtoValidator>();
-// Automatic registration:
-// builder.Services.AddValidatorsFromAssembly(Assembly.GetCallingAssembly());
+builder.Services
+    .AddFluentValidationAutoValidation()
+    .AddFluentValidationClientsideAdapters()
+    .AddValidatorsFromAssembly(Assembly.GetCallingAssembly());
 
 var app = builder.Build();
 
