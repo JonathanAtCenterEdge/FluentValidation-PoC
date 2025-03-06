@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+// https://docs.fluentvalidation.net/en/latest/configuring.html#placeholders
 builder.Services
     .AddFluentValidationAutoValidation()
     .AddFluentValidationClientsideAdapters()
