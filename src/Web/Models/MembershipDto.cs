@@ -5,5 +5,5 @@ namespace Web.Models;
 public class MembershipDto
 {
     [Required]
-    public BillingTermsDto BillingTermsAtSale { get; set; } = new();
+    public BillingTermsDto? BillingTermsAtSale { get; set; }
 }

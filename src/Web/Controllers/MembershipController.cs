@@ -9,7 +9,7 @@ public class MembershipController : Controller
     public IActionResult CreateMembership(
         [FromBody] MembershipDto membership)
     {
-        ValidateBillingTermsDto(membership.BillingTermsAtSale);
+        ValidateBillingTermsDto(membership.BillingTermsAtSale!);
 
         if (!ModelState.IsValid)
         {
@@ -23,7 +23,7 @@ public class MembershipController : Controller
     public IActionResult UpdateMembership(
         [FromBody] MembershipDto membership)
     {
-        ValidateBillingTermsDto(membership.BillingTermsAtSale);
+        ValidateBillingTermsDto(membership.BillingTermsAtSale!);
 
         if (!ModelState.IsValid)
         {
@@ -40,7 +40,7 @@ public class MembershipController : Controller
             return;
         }
 
-        foreach (var (key, message) in billingTermsDto.InstallmentPlan.CheckPlanValidity(billingTermsDto.Duration.NumberOfMonths))
+        foreach (var (key, message) in billingTermsDto.InstallmentPlan!.CheckPlanValidity(billingTermsDto.Duration!.NumberOfMonths))
         {
             ModelState.TryAddModelError(key, message);
         }

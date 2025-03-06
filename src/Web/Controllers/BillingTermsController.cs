@@ -40,7 +40,7 @@ public class BillingTermsController : Controller
             return;
         }
 
-        foreach (var (key, message) in billingTermsDto.InstallmentPlan.CheckPlanValidity(billingTermsDto.Duration.NumberOfMonths))
+        foreach (var (key, message) in billingTermsDto.InstallmentPlan!.CheckPlanValidity(billingTermsDto.Duration!.NumberOfMonths))
         {
             ModelState.TryAddModelError(key, message);
         }

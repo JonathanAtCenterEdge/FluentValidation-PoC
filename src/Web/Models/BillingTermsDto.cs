@@ -5,8 +5,8 @@ namespace Web.Models;
 public class BillingTermsDto
 {
     [Required]
-    public InstallmentPlanDto InstallmentPlan { get; set; } = new();
+    public InstallmentPlanDto? InstallmentPlan { get; set; }
 
     [Required]
-    public DurationDto Duration { get; set; } = new();
+    public DurationDto? Duration { get; set; }
 }
