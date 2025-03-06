@@ -4,6 +4,7 @@ using Web.Validators;
 
 namespace Web.UnitTests;
 
+// https://docs.fluentvalidation.net/en/latest/testing.html#test-extensions
 public class BillingTermsDtoValidatorTests
 {
     private readonly BillingTermsDtoValidator _billingTermsValidator = new();
