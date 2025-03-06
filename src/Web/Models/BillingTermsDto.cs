@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Web.Attributes;
 
 namespace Web.Models;
 
+[BillingTermsDtoValidation]
 public class BillingTermsDto
 {
     [Required]
