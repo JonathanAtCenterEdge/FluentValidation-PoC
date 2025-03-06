@@ -1,15 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using Web.Models;
 
 namespace Web.Controllers;
 
-public class BillingTermsController : Controller
+public class BillingTermsController(IValidator<BillingTermsDto> billingTermsValidator): Controller
 {
     [HttpPost("/billingTerms")]
     public IActionResult CreateBillingTerms(
         [FromBody] BillingTermsDto billingTermsDto)
     {
-        ValidateBillingTermsDto(billingTermsDto);
+        billingTermsValidator
+            .Validate(billingTermsDto)
+            .AddToModelState(ModelState);
 
         if (!ModelState.IsValid)
         {
@@ -23,7 +27,9 @@ public class BillingTermsController : Controller
     public IActionResult UpdateBillingTerms(
         [FromBody] BillingTermsDto billingTermsDto)
     {
-        ValidateBillingTermsDto(billingTermsDto);
+        billingTermsValidator
+            .Validate(billingTermsDto)
+            .AddToModelState(ModelState);
 
         if (!ModelState.IsValid)
         {
@@ -31,18 +37,5 @@ public class BillingTermsController : Controller
         }
 
         return Ok(billingTermsDto);
-    }
-
-    private void ValidateBillingTermsDto(BillingTermsDto billingTermsDto)
-    {
-        if (!ModelState.IsValid)
-        {
-            return;
-        }
-
-        foreach (var (key, message) in billingTermsDto.InstallmentPlan!.CheckPlanValidity(billingTermsDto.Duration!.NumberOfMonths))
-        {
-            ModelState.TryAddModelError(key, message);
-        }
     }
 }
