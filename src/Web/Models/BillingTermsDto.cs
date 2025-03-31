@@ -13,7 +13,7 @@ public class BillingTermsDto : IValidatableObject
     // Easier to unit test, but you still need to be quite verbose when checking for failures.
     // Cannot be async, the MVC validation pipeline is synchronous.
     // Errors and Keys must be manually specified.
-    // Validation Logic lives in the model. May or may not be a con depending on your perspective.
+    // Validation Logic lives on the model, which likely would be on a Dto layer, not the Business Logic layer
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
         if (InstallmentPlan is null || Duration is null)
