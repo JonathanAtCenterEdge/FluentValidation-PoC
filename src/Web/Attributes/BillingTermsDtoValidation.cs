@@ -7,6 +7,7 @@ namespace Web.Attributes;
 // Not strongly typed, it relies on object.
 // Cannot be async, the MVC validation pipeline is synchronous.
 // Errors and Keys must be manually specified.
+// Can live in a business logic layer easily.
 public class BillingTermsDtoValidation : ValidationAttribute
 {
     protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
