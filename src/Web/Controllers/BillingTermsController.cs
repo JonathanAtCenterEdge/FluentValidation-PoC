@@ -1,19 +1,17 @@
-﻿using FluentValidation.AspNetCore;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Web.Models;
-using Web.Validators;
 
 namespace Web.Controllers;
 
-public class BillingTermsController : Controller
+public class BillingTermsController(IValidator<BillingTermsDto> billingTermsDtoValidator) : Controller
 {
-    private readonly BillingTermsDtoValidator _billingTermsDtoValidator = new();
-
     [HttpPost("/billingTerms")]
     public IActionResult CreateBillingTerms(
         [FromBody] BillingTermsDto billingTermsDto)
     {
-        _billingTermsDtoValidator
+        billingTermsDtoValidator
             .Validate(billingTermsDto)
             .AddToModelState(ModelState);
 
@@ -29,7 +27,7 @@ public class BillingTermsController : Controller
     public IActionResult UpdateBillingTerms(
         [FromBody] BillingTermsDto billingTermsDto)
     {
-        _billingTermsDtoValidator
+        billingTermsDtoValidator
             .Validate(billingTermsDto)
             .AddToModelState(ModelState);
 

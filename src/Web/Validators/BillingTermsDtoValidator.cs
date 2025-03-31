@@ -6,10 +6,9 @@ namespace Web.Validators;
 // Can be async https://docs.fluentvalidation.net/en/latest/async.html?highlight=async
 // Strongly typed.
 // Can be very easily unit tested with native fluent-like assertions.
-// Can live in business logic, separate from the model.
+// Lives as a dependency injectable service, can be injected with IValidator<T>.
 // Is fluently readable.
 // Errors and Keys are automatic, but can be manually overridden fluently.
-// Has to be instantiated manually as-is.
 public class BillingTermsDtoValidator : AbstractValidator<BillingTermsDto?>
 {
     public BillingTermsDtoValidator()
