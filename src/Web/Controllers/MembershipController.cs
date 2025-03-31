@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Web.Models;
+using Web.Validation;
 
 namespace Web.Controllers;
 
@@ -9,7 +10,7 @@ public class MembershipController : Controller
     public IActionResult CreateMembership(
         [FromBody] MembershipDto membership)
     {
-        ValidateBillingTermsDto(membership.BillingTermsAtSale!);
+        ModelState.ValidateBillingTermsDto(membership.BillingTermsAtSale!);
 
         if (!ModelState.IsValid)
         {
@@ -23,7 +24,7 @@ public class MembershipController : Controller
     public IActionResult UpdateMembership(
         [FromBody] MembershipDto membership)
     {
-        ValidateBillingTermsDto(membership.BillingTermsAtSale!);
+        ModelState.ValidateBillingTermsDto(membership.BillingTermsAtSale!);
 
         if (!ModelState.IsValid)
         {
@@ -31,18 +32,5 @@ public class MembershipController : Controller
         }
 
         return Ok(membership);
-    }
-
-    private void ValidateBillingTermsDto(BillingTermsDto billingTermsDto)
-    {
-        if (!ModelState.IsValid)
-        {
-            return;
-        }
-
-        foreach (var (key, message) in billingTermsDto.InstallmentPlan!.CheckPlanValidity(billingTermsDto.Duration!.NumberOfMonths))
-        {
-            ModelState.TryAddModelError(key, message);
-        }
     }
 }
