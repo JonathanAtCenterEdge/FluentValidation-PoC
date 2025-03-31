@@ -9,6 +9,7 @@ namespace Web.Validators;
 // Can live in business logic, separate from the model.
 // Is fluently readable.
 // Errors and Keys are automatic, but can be manually overridden fluently.
+// Has to be instantiated manually as-is.
 public class BillingTermsDtoValidator : AbstractValidator<BillingTermsDto?>
 {
     public BillingTermsDtoValidator()
